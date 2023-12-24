@@ -1,0 +1,54 @@
+<!-- DODAJ NOWY TERMIN PODLEWANIA -->
+<div class="example-container">
+    <mat-form-field>
+      <!-- DZIEŃ -->
+      <mat-label>Dzień</mat-label>
+      <mat-select [(ngModel)]="dayNumber">
+        <mat-option value="0">Poniedziałek</mat-option>
+        <mat-option value="1">Wtorek</mat-option>
+        <mat-option value="2">Środa</mat-option>
+        <mat-option value="3">Czwartek</mat-option>
+        <mat-option value="4">Piątek</mat-option>
+        <mat-option value="5">Sobota</mat-option>
+        <mat-option value="6">Niedziela</mat-option>
+      </mat-select>
+    </mat-form-field>
+  <!-- OD -->
+  &nbsp;Od godziny
+    <mat-form-field >
+      <mat-label>Godzina startu</mat-label>
+      <mat-select [(ngModel)]="hourStart">
+        <mat-option *ngFor="let num of hourNumber" [value]="num">{{num}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Minuta startu</mat-label>
+      <mat-select [(ngModel)]="minuteStart">
+        <mat-option *ngFor="let num of minuteNumber" [value]="num">{{num}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- DO -->
+    &nbsp;Do godziny
+    <mat-form-field>
+      <mat-label>Godzina zakończenia</mat-label>
+      <mat-select [(ngModel)]="hourStop">
+        <mat-option *ngFor="let num of hourNumber" [value]="num">{{num}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Minuta zakończenia</mat-label>
+      <mat-select [(ngModel)]="minuteStop">
+        <mat-option *ngFor="let num of minuteNumber" [value]="num">{{num}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button  align="end" 
+          style="float:right;background-color: rgb(26, 188, 26);margin-bottom: 12px;margin-right: 23px;"
+          mat-raised-button color="warn" 
+          class="example-icon"
+          (click)="saveNew()"
+          
+          >
+      <mat-icon>info</mat-icon>
+      &nbsp;Dodaj
+  </button>
+  </div>

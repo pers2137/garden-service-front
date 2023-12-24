@@ -1,0 +1,52 @@
+<div *ngIf="error"><app-not-found></app-not-found></div>
+<div class="title_center"> 
+<div *ngIf="!error" style="width: 85%;" >
+
+
+
+    <div class="title_center">
+            <h4 *ngIf="listType === 'INFO'">Informacje o stacji</h4>
+            <h4 *ngIf="listType === 'SETTINGS'">Ustawienia stacji</h4>
+    </div>
+
+
+    <br>
+
+    <igx-input-group type="search" class="search">
+        <igx-prefix>
+            <igx-icon>search</igx-icon>
+        </igx-prefix>
+        <input #search igxInput placeholder="Wyszukaj stacje" [(ngModel)]="searchContact">
+        <igx-suffix *ngIf="search.value.length > 0" (click)="searchContact = '' ">
+            <igx-icon>clear</igx-icon>
+        </igx-suffix>
+    </igx-input-group>
+
+
+<mat-card class="example-card mb-1 ml-1 mr-2 mt-2">
+
+    <mat-selection-list style="padding-top: 0px;padding-bottom: 0px;" role="list">
+        <mat-list-item  
+        role="listitem"
+        *ngFor="let station of stationList | igxFilter: filterContacts; last as isLast"
+        style="border-bottom: 1px rgb(176, 171, 171) solid;font-size: 41px; height: 75px;" >
+        <mat-label>{{station.name}}</mat-label>
+            <!-- <span>{{ station.name }}</span> -->
+            <!-- <span class="example-spacer"></span> -->
+
+            <button style="float: right;" (click)="selectStation(station.id)" mat-raised-button color="primary" class="example-icon mr-3">
+                <mat-icon>info</mat-icon>
+                &nbsp;Wybierz
+            </button>
+
+        </mat-list-item>
+        <mat-list-item *ngIf="(stationList | igxFilter: filterContacts).length==0">
+                <mat-card-title style="flex-grow: 1;display: flex;" class="title_center">
+                    Brak stacji na liście!
+                </mat-card-title>
+        </mat-list-item>
+    </mat-selection-list>
+</mat-card>
+
+</div>
+</div>

@@ -1,0 +1,13 @@
+<p>show-settings works!</p>
+
+<div *ngIf="notFound">
+    <p>NOT_FOUND!</p>
+</div>
+
+<div *ngIf="error">
+    <p>UNEXPECTED_ERROR!</p>
+</div>
+
+<div *ngIf="!notFound && !error">
+    <p>{{station.id}} - {{station.name}}</p>
+</div>

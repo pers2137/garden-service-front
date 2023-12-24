@@ -1,0 +1,52 @@
+<mat-card class="example-card mb-5 ml-5 mr-5 mt-5">
+    <mat-card-header class="title_center">
+            <mat-card-title>Ustawienia konta</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-card-title>Nazwa użytkownika</mat-card-title>
+        <mat-form-field class="example-full-width">
+            <input matInput [type]="'text'" name="name" [disabled]="true" [(ngModel)] = "userName">
+        </mat-form-field>
+
+        <mat-card-title>Zmiana hasła</mat-card-title>
+        <div class="mb-2">
+            <app-alert [content] = "errors" [alertType] = "'error'"></app-alert>
+        </div>
+        <div class="mb-2">
+            <app-alert [content] = "success" [alertType] = "'success'"></app-alert>
+        </div>
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Stare hasło</mat-label>
+                <input matInput [type]="hideOldPassword ? 'password' : 'text'" placeholder="Stare hasło"  name="password" [(ngModel)] = "password.oldPassword"> <!--[(ngModel)] = "password.oldPassword" -->
+                <button mat-icon-button matSuffix (click)="hideOldPassword = !hideOldPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideOldPassword">
+                <mat-icon>{{hideOldPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Nowe hasło</mat-label>
+                <input matInput [type]="hideNewPassword ? 'password' : 'text'" placeholder="Nowe hasło"  name="password" [(ngModel)] = "password.newPassword" > <!--[(ngModel)] = "userDto.password" -->
+                <button mat-icon-button matSuffix (click)="hideNewPassword = !hideNewPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideNewPassword">
+                <mat-icon>{{hideNewPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Powtórz nowe hasło</mat-label>
+                <input matInput [type]="hideRepeatedPassword ? 'password' : 'text'" placeholder="Nowe hasło"  name="password" [(ngModel)] = "password.repeatedPassword"> <!--[(ngModel)] = "userDto.repeatedPassword" -->
+                <button mat-icon-button matSuffix (click)="hideRepeatedPassword = !hideRepeatedPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideRepeatedPassword">
+                <mat-icon>{{hideRepeatedPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button  mat-raised-button color="primary" class="example-icon mr-3" (click) = "changePassword()">
+            <mat-icon>save</mat-icon>
+            &nbsp;Zmień hasło
+        </button>
+        <button  mat-raised-button color="warn" class="example-icon" (click) = "cancel()">
+            <mat-icon>clear</mat-icon> 
+            &nbsp;Wyczyć dane
+        </button>
+    </mat-card-actions>
+</mat-card>

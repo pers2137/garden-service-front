@@ -1,0 +1,62 @@
+<div class="title_center">
+    <h4>Czujniki analogowe</h4>
+</div>
+<br>
+
+    
+<!-- TYP 2 -->
+
+    <!-- <mat-card-header class="title_center"><h4>TYP 2 - Wilgotność gleby</h4></mat-card-header> -->
+    <mat-card-content style="width: 50%;margin: 0 auto;" >
+        <table mat-table 
+                [dataSource]="dataSourceValvesTyp_2"
+                class="mat-elevation-z8" 
+                style="margin: 0 auto;">
+            
+            <!-- Name Column -->
+            <ng-container  matColumnDef="numerLini" >
+                <th mat-header-cell *matHeaderCellDef> Numer lini </th>
+                <td mat-cell *matCellDef="let element"> {{element.numerLini}} </td>
+            </ng-container>
+            
+            <!-- Weight Column -->
+            <ng-container  matColumnDef="isActive">
+                <th mat-header-cell *matHeaderCellDef> Czy jest aktywny </th>
+                <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
+            </ng-container>
+    
+            <!-- Weight Column -->
+            <ng-container  matColumnDef="lastMeasurements_humidity">
+                <th mat-header-cell *matHeaderCellDef>Ostatni pomiar <br> wilgotność gleby</th>
+                <td mat-cell *matCellDef="let element"> {{element.lastMeasurements_humidity? element.lastMeasurements_humidity : "-"}} </td>
+            </ng-container>
+
+            <ng-container  matColumnDef="lastMeasurements_sun">
+                <th mat-header-cell *matHeaderCellDef>Ostatni pomiar <br> nasłonecznienie</th>
+                <td mat-cell *matCellDef="let element"> {{element.lastMeasurements_sun? element.lastMeasurements_sun : "-"}} </td>
+            </ng-container>
+    
+                <!-- Weight Column -->
+            <ng-container  matColumnDef="lastMeasurementDate">
+                <th mat-header-cell *matHeaderCellDef>Data ostatniego pomiaru</th>
+                <td mat-cell *matCellDef="let element"> {{element.lastMeasurementDate != "Invalid Date" ? element.lastMeasurementDate:"-"}} </td>
+                <!-- ? element.lastMeasurementDate : "-" -->
+                </ng-container>
+    
+            <tr title_center *matNoDataRow >
+                <td [attr.colspan]="5">
+                    <mat-card-header class="title_center">
+                        <b>Brak danych</b>
+                    </mat-card-header>
+                </td>
+            </tr>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsValvesTyp_2"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsValvesTyp_2;"></tr>
+            </table>
+
+
+    </mat-card-content>
+    
+

@@ -1,0 +1,48 @@
+.dot {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+
+  .mat-slide-toggle {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    transform: scale(1.5) ; //adjust the pixels to your scale size i
+}
+
+.title_center {
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+  }
+
+
+  .mat-elevation-z4 {
+	box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+     0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+     0px 1px 10px 0px rgba(0, 0, 0, 0.12)
+}
+
+.example-container mat-form-field + mat-form-field, button {
+  margin-left: 10px;
+}
+
+
+mat-toolbar {
+  justify-content: space-between;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

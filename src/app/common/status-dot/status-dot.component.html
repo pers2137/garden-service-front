@@ -1,0 +1,25 @@
+<div *ngIf="dotType == 'ON'" >
+    <span class="dot" [style.background]="onActiveColor"></span>
+    &nbsp;
+    <span class="dot" [style.background]="offInactiveColor"></span>
+    &nbsp;
+    <span class="dot" [style.background]="autoInactiveColor"></span>
+</div>
+
+
+<div *ngIf="dotType == 'OFF'">
+    <span class="dot" [style.background]="onInactiveColor"></span>
+    &nbsp;
+    <span class="dot" [style.background]="offActiveColor"></span>
+    &nbsp;
+    <span class="dot" [style.background]="autoInactiveColor"></span>
+</div>
+
+
+<div *ngIf="dotType == 'AUTO'">
+    <span class="dot" [style.background]="onInactiveColor"></span>
+    &nbsp;
+    <span class="dot" [style.background]="offInactiveColor"></span>
+    &nbsp;
+    <span class="dot" [style.background]="autoActiveColor"></span>
+</div>

@@ -1,0 +1,14 @@
+<mat-list>
+    <div mat-subheader>Garden Service</div>
+    <mat-list-item  *ngFor="let menu of menuProperties">
+    <div class ="example-sidenav-content">
+      <mat-icon mat-list-icon>{{menu.icon}}</mat-icon>
+      
+      <div mat-line style="width: 200px; padding: 30px;" >
+        <a class="custom-link" href = "javascript:void(0)" (click)="navigate(menu.url)">{{menu.title}}</a>
+      </div>
+      <!-- <div mat-line> {{menu.numberOfelements}} </div> -->
+    </div>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+</mat-list>
