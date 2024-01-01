@@ -1,0 +1,49 @@
+<!-- <p>warnings-occurreses-list works!</p> -->
+<mat-card class="example-card mb-1 ml-1 mr-2 mt-2">
+
+    <mat-card-header class="title_center">
+        <mat-card-title>Ostatnie ostrzeżenia dla ostrzeżenia: {{stationName}}</mat-card-title>
+    </mat-card-header>
+    <br><br>
+
+    <div class="title_center">
+        <div style="width: 60%;" >
+            <app-warnings-table-warnings-information style="width: 60%;" [warningList]="warningList"></app-warnings-table-warnings-information>
+            
+            <div class="title_center" *ngIf="warningList.length <= 0">
+                <mat-list role="list" style="width: 60%;" >
+                  <mat-list-item  role="listitem"
+                                ngxIfNotEmpty="warningList"
+                                style="border-top: 1px rgb(181, 178, 178) solid">
+                    <mat-card-header *ngIf="warningList.length <= 0" class="title_center">
+                      <mat-card-title style="font-size: 90%;">Brak</mat-card-title>
+                    </mat-card-header>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+
+            <mat-paginator
+                (page)="handlePageEvent($event)"
+                [length]="recordCount"
+                [pageSize]="10"
+                [pageSizeOptions]="[10]"
+                [hidePageSize]="true"
+                [pageIndex]="0"
+                [showFirstLastButtons]="true"
+                aria-label="Select page">
+            </mat-paginator>
+        </div>
+    </div>
+
+    <div class="title_center">
+        <mat-card-actions>
+            <button (click)="back()" mat-raised-button color="primary" class="example-icon mr-3">
+                <mat-icon>clear</mat-icon>
+                &nbsp;Powrót
+            </button>
+
+        </mat-card-actions>
+    </div>
+
+   
+</mat-card>

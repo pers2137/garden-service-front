@@ -1,0 +1,141 @@
+<div class="title_center">
+    <mat-card class="example-card mb-5 ml-5 mr-5 mt-5" style="width: 80%;">
+    
+        <mat-card-header class="title_center">
+                <mat-card-title>Edytuj regułe</mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content>
+            <div class="title_center">
+                <div class="mb-2" style="min-width: 55%;">
+                    <app-alert [content] = "errors" [alertType] = "'error'"></app-alert>
+                </div>
+            </div>
+            
+            <div class="title_center" style="margin-right: 15%; margin-bottom: 0px;">
+                <mat-card-title style="width: 30%;text-align: center;">Nazwa stacji</mat-card-title>
+                <mat-form-field style="width: 25%;" class="example-full-width">
+                    <input matInput [type]="'text'" name="name" [disabled]="true" [(ngModel)] = "warningDetail.stationName">
+                </mat-form-field>
+             </div>
+            <div class="title_center" style="margin-right: 15%;margin-bottom: 0px;">
+            <mat-card-title style="width: 30%;text-align: center;" >Nazwa normy</mat-card-title>
+            <mat-form-field style="width: 25%;" class="example-full-width">
+                <input matInput [type]="'text'" name="name" [disabled]="false" [(ngModel)] = "warningDetail.normName">
+            </mat-form-field>
+            </div>
+            
+            <div class="title_center" style="margin-right: 15%;margin-bottom: 0px;">
+                <mat-card-title style="width: 30%;text-align: center;">Typ pomiaru</mat-card-title>
+                <mat-form-field style="width: 25%;" floatLabel="always">
+                        <input matInput [type]="'text'" name="name" [disabled]="true" [(ngModel)] = "selectedType">
+                </mat-form-field>
+            </div>
+    
+            <div class="title_center" style="margin-right: 15%;margin-bottom: 0px;">
+                <mat-card-title style="width: 30%;text-align: center;">Wybierz regułę</mat-card-title>
+                <mat-form-field style="width: 25%;" floatLabel="always">
+                    <mat-select [(ngModel)]="selectedMode" >
+                        <mat-option *ngFor="let mode of modeList" [value]="mode">{{mode}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            
+            <div class="title_center" style="margin-right: 15%;margin-bottom: 0px;">
+                <mat-card-title style="width: 30%;text-align: center;">Podaj wartość</mat-card-title>
+                <mat-form-field style="width: 25%;" floatLabel="always">
+                        <input matInput [type]="'number'" [disabled]="false" [(ngModel)] = "warningDetail.threshold">
+                </mat-form-field>
+            </div>
+
+            <div class="title_center" style="margin-right: 15%;margin-bottom: 0px;">
+                <mat-card-title style="width: 30%;text-align: center;font-size: 125%;">Powiadom gdy zmierzona wartość jest</mat-card-title>
+                <mat-form-field style="width: 25%;" floatLabel="always">
+                    <mat-select [(value)]="selectedTresholdText" [(ngModel)]="selectedTresholdText">
+                        <mat-option *ngFor="let text of belowTresholdText" [value]="text">{{text}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            
+            <mat-card-header class="title_center">
+                <mat-card-title>Lista czujników</mat-card-title>
+            </mat-card-header>
+    
+            <div class="title_center">
+                <mat-list role="list" style="width: 60%;" >
+                    <mat-list-item  role="listitem"
+                                    *ngFor="let sensor of warningDetail.sensorAddress; last as isLast"
+                                    style="border-top: 1px rgb(181, 178, 178) solid"
+                                    [style.border-bottom]="isLast ? '1px rgb(181, 178, 178) solid' : '' " 
+                    >
+                    <div class="row">
+                      <div class="column" style="margin-top: 8px;">
+                        {{sensor.length > 2 ? "Adres czujnika: " : "Czujnik z pinu: "}} {{sensor}} </div>
+                      <div class="column">
+                        <button style="float: right;"  
+                                mat-raised-button color="warn" 
+                                class="example-icon mr-3"
+                                (click)="deleteSensor(sensor)"
+                                >
+                          <mat-icon>info</mat-icon>&nbsp;Usuń
+                        </button>
+                      </div>
+                    </div>
+                    
+                    </mat-list-item>
+                        <mat-list-item  role="listitem"
+                                        ngxIfNotEmpty="warningDetail.sensorAddress"
+                                        style="border-top: 1px rgb(181, 178, 178) solid"
+                        >
+                        <mat-card-header *ngIf="warningDetail.sensorAddress.length <= 0" class="title_center">
+                        <mat-card-title style="font-size: 90%;">Brak</mat-card-title>
+                        </mat-card-header>
+                    </mat-list-item>
+                  </mat-list>
+        
+              
+                </div>
+
+
+            <div class="title_center">
+                <mat-card-title>Wybierz czujnik do dodania &nbsp;</mat-card-title>
+                <mat-form-field style="width: 25%;" floatLabel="always">
+                    <mat-select  [(ngModel)]="sensorToAdd">
+                        <mat-option *ngFor="let average of sensorToChoose" [value]="average" >
+                        {{average.length > 2 ? "Adres czujnika: " : "Czujnik z pinu: "}}{{average}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <button style="float: right;"  
+                mat-raised-button color="primary" 
+                class="example-icon ml-3"
+                style="margin-bottom: 15px;"
+                (click)="addNewSensorToWarnings()"
+                >
+                     <mat-icon>info</mat-icon>&nbsp;Dodaj
+                </button>
+            </div>
+        </mat-card-content>
+
+
+    </mat-card>
+
+</div>
+
+<div class="title_center">
+    <mat-card-actions>
+        <button (click)="save()" mat-raised-button color="primary" class="example-icon mr-3">
+            <mat-icon>save</mat-icon>
+            &nbsp;Zapisz
+        </button>
+        <button (click)="back()" mat-raised-button color="primary" class="example-icon mr-3">
+            <mat-icon>clear</mat-icon>
+            &nbsp;Powrót
+        </button>
+        <button (click)="delete()" mat-raised-button color="warn" class="example-icon mr-3">
+            <mat-icon>clear</mat-icon>
+            &nbsp;Usuń
+        </button>
+    </mat-card-actions>
+</div>

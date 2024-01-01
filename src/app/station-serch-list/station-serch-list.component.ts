@@ -33,6 +33,8 @@ export class StationSerchListComponent implements OnInit {
         this.listType = "INFO"
       } else if(this.router.url === "/settings") {
         this.listType = "SETTINGS"
+      } else if(this.router.url === "/warnings") {
+        this.listType = "WARNINGS"
       }
 
       console.log(this.router.url);
@@ -79,8 +81,10 @@ export class StationSerchListComponent implements OnInit {
     public selectStation(stationId: number) {
       if(this.listType == "SETTINGS") {
         this.router.navigate(['settings',stationId,'edit']);
-      } else {
+      } else if(this.listType == "INFO"){
         this.router.navigate(['information',stationId]);
+      } else {
+        this.router.navigate(['warnings',stationId]);
       }
     
     }

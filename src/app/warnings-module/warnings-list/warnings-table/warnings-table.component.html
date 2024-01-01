@@ -1,0 +1,135 @@
+<div class="title_center">
+  <div style="width: 60%;" >
+<mat-accordion >
+
+    <mat-expansion-panel  class="mat-elevation-z4" *ngFor="let element of warningsList.warningResponseList; let i = index">
+      <!-- PASEK -->
+      <mat-expansion-panel-header >
+        <mat-panel-title>
+            Nazwa: {{element.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+          <div *ngIf="element.criterion == 'MAX'" style="width: 150px;">Kryterium: Maksimum</div>
+          <div *ngIf="element.criterion == 'MIN'" style="width: 150px;">Kryterium: Minimum</div>
+          <div *ngIf="element.criterion == 'AVG'" style="width: 150px;">Kryterium: Średnia</div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <!-- CONTENT -->
+      <app-list-details-component [content]="element" ></app-list-details-component>
+
+      <mat-card-header class="title_center">
+        <mat-card-title style="font-size: 100%;">Lista ostatnich ostrzeżeń</mat-card-title>
+      </mat-card-header>
+
+      <div class="title_center">
+        <app-warnings-table-warnings-information style="width: 60%;" [warningList]="element.warningInformationList"></app-warnings-table-warnings-information>
+      </div>
+
+      <div class="title_center">
+        <mat-list role="list" style="width: 60%;" >
+          <mat-list-item  role="listitem"
+                        ngxIfNotEmpty="element.warningInformationList"
+                        style="border-top: 1px rgb(181, 178, 178) solid">
+            <mat-card-header *ngIf="element.warningInformationList.length <= 0" class="title_center">
+              <mat-card-title style="font-size: 90%;">Brak</mat-card-title>
+            </mat-card-header>
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+    <mat-card-header class="title_center">
+      <mat-card-title style="font-size: 100%;">Lista sensorów przpisanych do reguły</mat-card-title>
+    </mat-card-header>
+    <div class="title_center">
+      <mat-list role="list" style="width: 60%;" >
+      <mat-list-item  role="listitem"
+                      *ngFor="let address of element.sensorAddressList; last as isLast"
+                      style="border-top: 1px rgb(181, 178, 178) solid"
+                      [style.border-bottom]="isLast ? '1px rgb(181, 178, 178) solid' : '' " 
+      >
+      <div class="row">
+        <div class="column"  style="margin-top: 8px;">{{address.toString().length > 2 ? "Adres czujnika: " : "Czujnik z pinu: "}} {{address}}</div>
+        <!-- <div class="column">
+        </div> -->
+      </div>
+      </mat-list-item>
+      
+      <mat-list-item  role="listitem"
+                      ngxIfNotEmpty="element.sensorAddressList"
+                      style="border-top: 1px rgb(181, 178, 178) solid"
+      >
+      <mat-card-header *ngIf="element.sensorAddressList.length <= 0" class="title_center">
+        <mat-card-title style="font-size: 90%;">Brak</mat-card-title>
+      </mat-card-header>
+    </mat-list-item>
+    </mat-list>
+  </div>
+
+
+     
+
+
+    <div style="width: 100%;text-align: center;">
+        <button mat-raised-button color="primary" class="example-icon" (click)="editWarning(element.warningId)" style="margin: 0 7px;" > 
+            <mat-icon>save</mat-icon>
+            &nbsp;Edytuj
+        </button>
+        <button style="background-color: rgb(26, 188, 26);margin: 0 7px;" (click)="showAllWarnings(element.warningId)" mat-raised-button color="primary" class="example-icon" > 
+            <mat-icon>save</mat-icon>
+            &nbsp;Pokaż wszystkie ostrzeżenia
+        </button>
+
+        <button style="background-color: rgb(246, 20, 20);margin: 0 7px;" (click)="deleteWarning(element.warningId)" mat-raised-button color="primary" class="example-icon" > 
+            <mat-icon>save</mat-icon>
+            &nbsp;Usuń
+        </button>
+    </div>
+
+    </mat-expansion-panel>
+
+      <!-- <mat-list role="list">
+        <mat-list-item  role="listitem"
+                        *ngFor="let schedule of valve.schedulesList; last as isLast"
+                        style="border-top: 1px rgb(181, 178, 178) solid"
+                        [style.border-bottom]="isLast ? '1px rgb(181, 178, 178) solid' : '' " 
+        >
+        <div class="row">
+          <div class="column" style="margin-top: 8px;">Dzień podlewania: {{dayList[schedule.dayOfWeek]}}</div>
+          <div class="column" style="margin-top: 8px;">
+            Czas podlewania: {{schedule.hourStart}}:{{schedule.minuteStart < 10 ? '0' : '' }}{{schedule.minuteStart}}-
+            {{schedule.hourStop}}:{{schedule.minuteStop < 10 ? '0' : '' }}{{schedule.minuteStop}} </div>
+          <div class="column">
+            <button style="float: right;transform: scale(0.75);"  
+                    mat-raised-button color="warn" 
+                    class="example-icon mr-3"
+                    (click)="deleteShedule(valve.pin, schedule?.id,  schedule.uuid)">
+              <mat-icon>info</mat-icon>&nbsp;Usuń
+            </button>
+          </div>
+        </div>
+        </mat-list-item>
+        <mat-list-item  role="listitem"
+                        ngxIfNotEmpty="valve.schedulesList"
+                        style="border-top: 1px rgb(181, 178, 178) solid"
+        >
+        <mat-card-header *ngIf="valve.schedulesList.length <= 0" class="title_center">
+          <mat-card-title style="font-size: 90%;">Brak</mat-card-title>
+        </mat-card-header>
+      </mat-list-item>
+      </mat-list> -->
+      <!-- <br> -->
+
+      <!-- <app-add-new-szchedule 
+        [pinNumber]="valve.pin" 
+        (addSchedulerEvent)="addScheduler($event)">
+      </app-add-new-szchedule> -->
+
+      
+    
+
+  
+    
+  </mat-accordion>
+</div>
+</div>

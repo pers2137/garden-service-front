@@ -34,6 +34,13 @@ export class MenuComponent {
       numberOfelements: 0,
     },
     {
+      id: 'warnings',
+      icon: 'warnings',
+      title: 'Normy ostrzeżeń',
+      url: 'warnings',
+      numberOfelements: 0,
+    },
+    {
       id: 'My_Day',
       icon: 'settings',
       title: 'Ustawienia stacji',

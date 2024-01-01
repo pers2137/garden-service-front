@@ -1,0 +1,40 @@
+<mat-card class="mat-elevation-z4" *ngIf="!notFound && !error" class="example-card mb-5 ml-5 mr-5 mt-3">
+    <mat-card-header class="title_center">
+        <mat-card-title>Lista norm dla stacji: {{stationName}}</mat-card-title>
+    </mat-card-header>
+
+
+    <mat-card-content>
+        <app-warnings-table [warningsList]="warningsList" ></app-warnings-table>
+        <!-- <app-electrovalve-list 
+        [valvesList]="station.valvesList"
+         (addSchedulerEvent)="addScheduler($event)"
+         (deleteSchedulerEvent)="deleteScheduler($event)"></app-electrovalve-list> -->
+         <div class="title_center" *ngIf="warningsList.warningResponseList.length <= 0">
+            <mat-list role="list" style="width: 60%;" >
+              <mat-list-item  role="listitem"
+                            ngxIfNotEmpty="warningList"
+                            style="border-top: 1px rgb(181, 178, 178) solid">
+                <mat-card-header *ngIf="warningsList.warningResponseList.length <= 0" class="title_center">
+                  <mat-card-title style="font-size: 90%;">Brak</mat-card-title>
+                </mat-card-header>
+              </mat-list-item>
+            </mat-list>
+          </div>
+    </mat-card-content>
+
+
+
+    <mat-card-header *ngIf="!notFound && !error"  class="title_center" style="margin-bottom: 15px;">
+        <button style="background-color: rgb(26, 188, 26);" 
+                mat-raised-button 
+                color="primary" 
+                class="example-icon"
+                (click)="navigateToNew()" > 
+            <mat-icon>save</mat-icon>
+            &nbsp;Dodaj nową regułę
+        </button>
+    </mat-card-header>
+
+
+</mat-card>

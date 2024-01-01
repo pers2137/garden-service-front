@@ -16,12 +16,10 @@
             <th mat-header-cell *matHeaderCellDef> Nazwa </th>
             <td mat-cell *matCellDef="let element"> 
               <div style="text-align: center;"> 
-                Elektrozawór {{element.col_1}} | Status: {{element.col_1_status}}
+                Elektrozawór {{element.col_1}} | Tryb sterowania: {{element.col_1_status}}
                 <app-status-dot [dotType]="element.col_1_status"></app-status-dot>
               </div>
-                <!-- <span *ngIf="element.col_1_status == 'OFF'"class="dot" [style.background]="'#ee4b4b'"></span>
-                <span *ngIf="element.col_1_status == 'ON'" class="dot" [style.background]="'#6fd34b'"></span>
-                <span *ngIf="element.col_1_status == 'AUTO'" class="dot" [style.background]="'#e7de39'"></span> -->
+              
             </td>
           </ng-container>
         
@@ -30,12 +28,10 @@
             <th mat-header-cell *matHeaderCellDef> Wartość </th>
             <td mat-cell *matCellDef="let element"> 
               <div style="text-align: center;"> 
-                Elektrozawór {{element.col_2}} | Status: {{element.col_2_status}}
+                Elektrozawór {{element.col_2}} | Tryb sterowania: {{element.col_2_status}}
                 <app-status-dot [dotType]="element.col_2_status"></app-status-dot>
               </div>
-                <!-- <span *ngIf="element.col_2_status == 'OFF'"class="dot" [style.background]="'#ee4b4b'"></span>
-                <span *ngIf="element.col_2_status == 'ON'" class="dot" [style.background]="'#6fd34b'"></span>
-                <span *ngIf="element.col_2_status == 'AUTO'" class="dot" [style.background]="'#e7de39'"></span> -->
+              
             </td>
           </ng-container>
 
@@ -44,13 +40,10 @@
               <th mat-header-cell *matHeaderCellDef> Wartość </th>
               <td mat-cell *matCellDef="let element">
                 <div style="text-align: center;"> 
-                  Elektrozawór {{element.col_3}} | Status: {{element.col_3_status}}
+                  Elektrozawór {{element.col_3}} | Tryb sterowania: {{element.col_3_status}}
                   <app-status-dot [dotType]="element.col_3_status"></app-status-dot> 
                 </div>
-                <!-- <span *ngIf="element.col_3_status == 'OFF'"class="dot" [style.background]="'#ee4b4b'"></span>
-                  <span *ngIf="element.col_3_status == 'ON'" class="dot" [style.background]="'#6fd34b'"></span>
-                  <span *ngIf="element.col_3_status == 'AUTO'" class="dot" [style.background]="'#e7de39'"></span> -->
-              </td>
+              
             </ng-container>
 
             <!-- Weight Column -->
@@ -58,12 +51,10 @@
               <th mat-header-cell *matHeaderCellDef> Wartość </th>
               <td mat-cell *matCellDef="let element">
                 <div style="text-align: center;"> 
-                  Elektrozawór {{element.col_4}} | Status: {{element.col_4_status}}
+                  Elektrozawór {{element.col_4}} | Tryb sterowania: {{element.col_4_status}}
                   <app-status-dot [dotType]="element.col_4_status"></app-status-dot> 
                 </div>
-                <!-- <span *ngIf="element.col_4_status == 'OFF'"class="dot" [style.background]="'#ee4b4b'"></span>
-                  <span *ngIf="element.col_4_status == 'ON'" class="dot" [style.background]="'#6fd34b'"></span>
-                  <span *ngIf="element.col_4_status == 'AUTO'" class="dot" [style.background]="'#e7de39'"></span> -->
+                
               </td>
             </ng-container>
 

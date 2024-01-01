@@ -49,6 +49,13 @@ export interface StationMeasurementsDataResponse {
   }
 };
 
+export interface SensorList {
+  sList: string[];
+  shList: string[];
+  dhtList: string[];
+  dsList: string[];
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -65,13 +72,25 @@ export class StationService {
 
   getStationInformation(id: number) {
     return this.http.get<StationInformationResponse>(
-      'http://' + environment.host + ':' + environment.port + '/api/station/information/get/' + id
+      'http://' + environment.host + ':' + environment.port + '/api/station/details/information/' + id
+    );
+  }
+
+  getStationBasicInformation(id: number) {
+    return this.http.get<StationInformationResponse>(
+      'http://' + environment.host + ':' + environment.port + '/api/station/basic/information/' + id
     );
   }
 
   getStationSettings(id: number) {
     return this.http.get<StationSettingsResponse>(
       'http://' + environment.host + ':' + environment.port + '/api/station/settings/get/' + id
+    );
+  }
+
+  getSensorList(id: number) {
+    return this.http.get<StationSettingsResponse>(
+      'http://' + environment.host + ':' + environment.port + '/api/station/sensor/list/' + id
     );
   }
 

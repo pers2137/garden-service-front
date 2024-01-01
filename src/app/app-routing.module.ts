@@ -16,6 +16,15 @@ import { InformationStationComponent } from './information-module/information-st
 import { MeasurementsComponent } from './measurements/measurements.component';
 import { StationInformationResolverService } from './services/station-information-resolver.service';
 import { LoggedGuard } from './guard/logged-guard';
+import { WarningsModuleComponent } from './warnings-module/warnings-module.component';
+import { WarningsListComponent } from './warnings-module/warnings-list/warnings-list.component';
+import { WarningsDetailsComponent } from './warnings-module/warnings-details/warnings-details.component';
+import { SensorResolverService } from './services/sensor-resolver.service';
+import { WarningsResolverService } from './services/warnings-resolver.service';
+import { WarningsDetailsEditComponent } from './warnings-module/warnings-details/warnings-details-edit/warnings-details-edit.component';
+import { WarningsOccurresesListComponent } from './warnings-module/warnings-occurreses-list/warnings-occurreses-list.component';
+import { WarningDetailsResolverService } from './services/warning-details-resolver.service';
+import { StationInformationBasicResolverService } from './services/station-information-basic-resolver.service';
 
 const routes: Routes = [ 
   { path: '', redirectTo: 'station-view', pathMatch: 'full' },
@@ -52,6 +61,35 @@ const routes: Routes = [
         path: ':id/edit',
         component: EditSettingsComponent,
         resolve: [SettingsResolverService]
+      },
+
+    ]
+  },
+  {
+    path: 'warnings',
+    component: WarningsModuleComponent,
+    canActivate: [UserGuard],
+    children: [
+      { path: '', component: StationSerchListComponent }, //TODO -> PODMIANA NA StationDropDownList ????????
+      {
+        path: ':id',
+        component: WarningsListComponent,
+        resolve: [WarningsResolverService, StationInformationBasicResolverService]
+      },
+      {
+        path: ':id/add',
+        component: WarningsDetailsComponent,
+        resolve: [SensorResolverService, StationInformationBasicResolverService]
+      },
+      {
+        path: ':id/edit/:warningId',
+        component: WarningsDetailsEditComponent,
+        resolve: [WarningDetailsResolverService, SensorResolverService]
+      },
+      {
+        path: ':id/list/:warningId',
+        component: WarningsOccurresesListComponent,
+        resolve: [WarningDetailsResolverService]
       },
 
     ]

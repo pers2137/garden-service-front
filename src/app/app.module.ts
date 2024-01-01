@@ -69,6 +69,19 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SaveSettingSnackbarComponent } from './account-setting/save-setting-snackbar/save-setting-snackbar.component';
 import { StatusDotComponent } from './common/status-dot/status-dot.component';
+import { WarningsModuleComponent } from './warnings-module/warnings-module.component';
+import { WarningsListComponent } from './warnings-module/warnings-list/warnings-list.component';
+import { WarningsTableComponent } from './warnings-module/warnings-list/warnings-table/warnings-table.component';
+import { WarningsDetailsComponent } from './warnings-module/warnings-details/warnings-details.component';
+import { ListDetailsComponentComponent } from './warnings-module/warnings-list/list-details-component/list-details-component.component';
+import { DeleteWarningSnackBarComponent } from './snackbar/delete-warning-snack-bar/delete-warning-snack-bar.component';
+import { WarningsDetailsEditComponent } from './warnings-module/warnings-details/warnings-details-edit/warnings-details-edit.component';
+import { WarningsOccurresesListComponent } from './warnings-module/warnings-occurreses-list/warnings-occurreses-list.component';
+import { AddWarningSnackBarComponent } from './snackbar/add-warning-snack-bar/add-warning-snack-bar.component';
+import { EditWarningSnackBarComponent } from './snackbar/edit-warning-snack-bar/edit-warning-snack-bar.component';
+import { WarningsTableWarningsInformationComponent } from './warnings-module/warnings-list/warnings-table/warnings-table-warnings-information/warnings-table-warnings-information.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -98,6 +111,17 @@ import { StatusDotComponent } from './common/status-dot/status-dot.component';
     AnalogSensorTableComponent,
     SaveSettingSnackbarComponent,
     StatusDotComponent,
+    WarningsModuleComponent,
+    WarningsListComponent,
+    WarningsTableComponent,
+    WarningsDetailsComponent,
+    ListDetailsComponentComponent,
+    DeleteWarningSnackBarComponent,
+    WarningsDetailsEditComponent,
+    WarningsOccurresesListComponent,
+    AddWarningSnackBarComponent,
+    EditWarningSnackBarComponent,
+    WarningsTableWarningsInformationComponent,
     //SaveSnackBarComponent
     
   ],
@@ -138,7 +162,8 @@ import { StatusDotComponent } from './common/status-dot/status-dot.component';
     MatDatepickerModule,
     MatNativeDateModule,
     CanvasJSAngularChartsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule
   ],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}, UserGuard, MatDatepickerModule],
   bootstrap: [AppComponent]
