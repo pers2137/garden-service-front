@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { WarningsServiceService } from './warnings-service.service';
 import { Observable, catchError, of } from 'rxjs';
 
@@ -8,18 +8,15 @@ import { Observable, catchError, of } from 'rxjs';
 })
 export class WarningDetailsResolverService implements Resolve<any> {
 
-  constructor(private warningService: WarningsServiceService) { }
+  constructor(private warningService: WarningsServiceService, private router: Router) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<any> {
     var id = route.paramMap.get('id');
     var warningId = route.paramMap.get('warningId');
     return this.warningService.getWarningDetail(Number(id), Number(warningId)).pipe(catchError((error) => {
       console.log(error);
-      if(error.error.code == "station.not-found") {
-        return of("NOT_FOUND");
-      } else {
-        return of("UNEXPECTED_ERROR");
-      }
+      this.router.navigate(['404']);
+      return "error";
       
     })); 
   }

@@ -5,7 +5,7 @@
       <app-menu></app-menu>
     </div>
   </mat-sidenav>
-
+  
   <mat-sidenav-content>
     <app-banner *ngIf="!isUserLogged()"></app-banner>
     <app-header *ngIf="isUserLogged()"
@@ -15,5 +15,6 @@
       <router-outlet></router-outlet>
     <!-- <app-footer *ngIf="isUserLogged()"></app-footer> -->
   </mat-sidenav-content>
+
 
 </mat-sidenav-container>
