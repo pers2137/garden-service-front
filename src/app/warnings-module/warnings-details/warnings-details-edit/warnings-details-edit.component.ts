@@ -50,12 +50,12 @@ export class WarningsDetailsEditComponent implements OnInit {
       this.warningDetail = this.route.snapshot.data[0];
       this.sensorList =  this.route.snapshot.data[1];
     }
-    // console.log(this.route.snapshot.data[1]);
+
     if(this.warningDetail.measurementType === "INSOLATION") this.selectedType = this.sensorTypeList[0];
     else if(this.warningDetail.measurementType === "SOIL_HUMIDITY") this.selectedType = this.sensorTypeList[1];
     else if(this.warningDetail.measurementType === "AIR_TEMP") this.selectedType = this.sensorTypeList[2];
     else this.selectedType = this.sensorTypeList[3];
-    
+
     if(this.warningDetail.belowThreshold) this.selectedTresholdText = this.belowTresholdText[1];
     else this.selectedTresholdText = this.belowTresholdText[0];
 
@@ -86,7 +86,7 @@ export class WarningsDetailsEditComponent implements OnInit {
   addNewSensorToWarnings() {
     if(this.sensorToAdd === "") return;
     this.warningDetail.sensorAddress.push(this.sensorToAdd);
-    
+
 
     this.sensorToChoose.splice(this.sensorToChoose.indexOf(this.sensorToAdd), 1);
     this.sensorToAdd = ""
@@ -117,7 +117,7 @@ export class WarningsDetailsEditComponent implements OnInit {
 
 
     var warningId = this.route.snapshot.paramMap.get('warningId');
-    
+
     var criterion;
     if(this.selectedMode == this.modeList[0]) criterion = "MIN";
     else if(this.selectedMode == this.modeList[1]) criterion = "MAX";
@@ -127,7 +127,7 @@ export class WarningsDetailsEditComponent implements OnInit {
     if(this.selectedTresholdText == this.belowTresholdText[0]) belowTreshold = false;
     else belowTreshold = true;
 
-      this.warningService.editWarning(this.stationId, 
+      this.warningService.editWarning(this.stationId,
                                       Number(warningId),
                                       this.warningDetail.normName,
                                       this.warningDetail.measurementType, //todo tutaj konwersja na S SH DS DSH
@@ -143,7 +143,7 @@ export class WarningsDetailsEditComponent implements OnInit {
                               this.errors = [];
                               // this.router.navigate(['warnings', this.stationId]);
 
-                        }, 
+                        },
                         error => {
                             console.log(error);
                         }
@@ -159,8 +159,8 @@ export class WarningsDetailsEditComponent implements OnInit {
         duration: 2500,
       });
       this.router.navigate(['warnings', this.stationId]);
-      
-    }, 
+
+    },
     error => { console.log(error);}
     );
   }

@@ -5,7 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { throwError, BehaviorSubject } from 'rxjs';
 
-export interface AuthResponseData { 
+export interface AuthResponseData {
   userName: string
 };
 
@@ -39,11 +39,7 @@ export class UserServiceService {
   }
 
   private handleAuthentication(userName: string) {
-    // const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-    // const user = new User(userName, null);
-    // this.user.next(user);
-    // this.autoLogout(expiresIn * 1000);
-    // localStorage.setItem('loggedUser', JSON.stringify(userName));
+
     this.loggedUser = userName;
     localStorage.setItem('loggedUser', userName);
   }
@@ -64,27 +60,6 @@ export class UserServiceService {
     return this.loggedUser !== null && this.loggedUser !== undefined;
   }
 
-  // private handleError(errorRes: HttpErrorResponse) {
-  //   let errorMessage = 'An unknown error occurred!';
-   
-  //   if (!errorRes.error || !errorRes.error.error) {
-  //     return throwError(errorMessage);
-  //   }
 
-  //   console.log(errorRes);
-
-  //   switch (errorRes.error.error.message) {
-  //     case 'EMAIL_EXISTS':
-  //       errorMessage = 'This email exists already';
-  //       break;
-  //     case 'EMAIL_NOT_FOUND':
-  //       errorMessage = 'This email does not exist.';
-  //       break;
-  //     case 'INVALID_PASSWORD':
-  //       errorMessage = 'This password is not correct.';
-  //       break;
-  //   }
-  //   return throwError(errorMessage);
-  // }
 
 }

@@ -16,8 +16,6 @@ export class ShowSettingsComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-
-    console.log(this.route.snapshot.data[0])
     if(this.route.snapshot.data[0] === "NOT_FOUND") {
       this.notFound = true;
     } else if (this.route.snapshot.data[0] === "UNEXPECTED_ERROR") {
@@ -25,7 +23,7 @@ export class ShowSettingsComponent implements OnInit {
     } else {
       this.station = this.route.snapshot.data[0]
     }
-    
+
   }
 
 }

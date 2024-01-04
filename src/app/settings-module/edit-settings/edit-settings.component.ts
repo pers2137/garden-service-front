@@ -27,7 +27,7 @@ export class EditSettingsComponent implements OnInit {
 
   value = 30;
 
- 
+
 
 
   station!: StationSettings;
@@ -37,7 +37,7 @@ export class EditSettingsComponent implements OnInit {
   public errors: any = [];
   public success: any = [];
 
-  constructor(private route: ActivatedRoute, 
+  constructor(private route: ActivatedRoute,
               public stationService: StationService,
               private _snackBar: MatSnackBar) {}
 
@@ -80,11 +80,10 @@ export class EditSettingsComponent implements OnInit {
                                 dayOfWeek: model.dayNumber
                           });
       }
-    })                     
+    })
   }
 
   deleteScheduler(model: SzchedulerDeleteRecord) {
-    console.log(model.id + " " + model.pin + " " + model.uuid);
 
     var valveIndex = this.station.valvesList.findIndex( it => it.pin == model.pin);
     var schedulerIndex;

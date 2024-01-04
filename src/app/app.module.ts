@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule, MAT_CARD_CONFIG } from '@angular/material/card';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -38,8 +38,7 @@ import { EditSettingsComponent } from './settings-module/edit-settings/edit-sett
 import { SettingsModuleComponent } from './settings-module/settings-module.component';
 import { InformationModuleComponent } from './information-module/information-module.component';
 import { StationSerchListComponent } from './station-serch-list/station-serch-list.component';
-import { LoggedGuard } from './guard/logged-guard';
-import { 
+import {
 	IgxAvatarModule,
 	IgxFilterModule,
 	IgxIconModule,
@@ -82,6 +81,8 @@ import { AddWarningSnackBarComponent } from './snackbar/add-warning-snack-bar/ad
 import { EditWarningSnackBarComponent } from './snackbar/edit-warning-snack-bar/edit-warning-snack-bar.component';
 import { WarningsTableWarningsInformationComponent } from './warnings-module/warnings-list/warnings-table/warnings-table-warnings-information/warnings-table-warnings-information.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { LoggedGuard } from './guard/logged-guard';
+import { LineChart2Component } from './measurements/line-chart2/line-chart2.component';
 
 
 @NgModule({
@@ -123,8 +124,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     AddWarningSnackBarComponent,
     EditWarningSnackBarComponent,
     WarningsTableWarningsInformationComponent,
+    LineChart2Component,
     //SaveSnackBarComponent
-    
+
   ],
   imports: [
     BrowserModule,
@@ -166,7 +168,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSnackBarModule,
     MatPaginatorModule
   ],
-  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}, UserGuard, LoggedGuard, MatDatepickerModule],
+  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}, UserGuard, MatDatepickerModule, LoggedGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

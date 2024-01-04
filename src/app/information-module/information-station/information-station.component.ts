@@ -61,8 +61,7 @@ export class InformationStationComponent {
    constructor(private route: ActivatedRoute) {}
 
    ngOnInit() {
-    console.log("test");
-    console.log(this.route.snapshot.data[0])
+
     if(this.route.snapshot.data[0] === "NOT_FOUND") {
       this.notFound = true;
     } else if (this.route.snapshot.data[0] === "UNEXPECTED_ERROR") {

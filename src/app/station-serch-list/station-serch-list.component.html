@@ -1,5 +1,5 @@
 <div *ngIf="error"><app-not-found></app-not-found></div>
-<div class="title_center"> 
+<div class="title_center">
 <div *ngIf="!error" style="width: 85%;" >
 
 
@@ -24,10 +24,15 @@
     </igx-input-group>
 
 
+
 <mat-card class="example-card mb-1 ml-1 mr-2 mt-2">
 
-    <mat-selection-list style="padding-top: 0px;padding-bottom: 0px;" role="list">
-        <mat-list-item  
+    <mat-card-title *ngIf="stationList.length == 0" style="flex-grow: 1;display: flex;" class="title_center">
+        Brak stacji na liście!
+    </mat-card-title>
+
+    <mat-selection-list *ngIf="stationList.length > 0" style="padding-top: 0px;padding-bottom: 0px;" role="list">
+        <mat-list-item
         role="listitem"
         *ngFor="let station of stationList | igxFilter: filterContacts; last as isLast"
         style="border-bottom: 1px rgb(176, 171, 171) solid;font-size: 41px; height: 75px;" >
@@ -41,7 +46,7 @@
             </button>
 
         </mat-list-item>
-        <mat-list-item *ngIf="(stationList | igxFilter: filterContacts).length==0">
+        <mat-list-item *ngIf="(stationList | igxFilter: filterContacts).length == 0">
                 <mat-card-title style="flex-grow: 1;display: flex;" class="title_center">
                     Brak stacji na liście!
                 </mat-card-title>

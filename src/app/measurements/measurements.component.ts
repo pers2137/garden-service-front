@@ -15,14 +15,14 @@ export const MY_FORMATS = {
   },
 };
 
-export interface StationList { 
+export interface StationList {
   stationListElement: [{
     id: number;
     name: string;
   }]
 };
 
-export interface ChartData { 
+export interface ChartData {
   chartDataA: {
     sensorData: [{
       sensorId: string;
@@ -65,9 +65,15 @@ export class MeasurementsComponent implements OnInit {
     {type: 'DS', description: 'Czujnik ds18b20'},
     {type: 'DHT', description: 'Czujnik temperatury i wilgotności powietrza'},
   ];
-  
-  parentEmitter = new EventEmitter<[]>(); 
-  parentEmitterUpdateData = new EventEmitter<any>(); 
+
+  parentEmitter = new EventEmitter<[]>();
+  parentEmitterUpdateData = new EventEmitter<any>();
+
+
+  parentEmitter_chart2 = new EventEmitter<[]>();
+  parentEmitterUpdateData_chart2 = new EventEmitter<any>();
+
+
 
   startDate = new Date();
   endDate = new Date();
@@ -76,16 +82,21 @@ export class MeasurementsComponent implements OnInit {
   selectedStationId: number;
   typ: string;
   firstChange = false;
-  
+
   presentedStationId: number;
   presentedTyp: string;
   presentedStartDate = new Date();
   presentedEndDate = new Date();
 
   sensorsGroup: FormGroup;
+  sensorsGroup_chart2: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private stationService: StationService) {
     this.sensorsGroup = this.formBuilder.group({
+      selectCtrl: [false],
+    });
+
+    this.sensorsGroup_chart2 = this.formBuilder.group({
       selectCtrl: [false],
     });
   }
@@ -105,7 +116,7 @@ export class MeasurementsComponent implements OnInit {
   inputChange() {
     if(this.firstChange == true) return;
     this.getMeasurementsData();
-    // this.parentEmitterUpdateData.emit(this.chartData.chartDataA.sensorData); 
+    // this.parentEmitterUpdateData.emit(this.chartData.chartDataA.sensorData);
     // this.emitChangeSensor();
     this.firstChange = true;
   }
@@ -127,12 +138,12 @@ export class MeasurementsComponent implements OnInit {
 
 
   private getMeasurementsData() {
-    
+
     this.stationService.getMeasurements(this.selectedStationId, this.typ,  this.startDate, this.endDate).subscribe(
       resData => {
           this.chartData = resData;
           console.log(this.chartData);
-          
+
           var sensorNumber = 0;
           if(this.chartData == null) return;
           this.chartData.chartDataA.sensorData.forEach(
@@ -150,10 +161,25 @@ export class MeasurementsComponent implements OnInit {
           this.presentedTyp = this.typ;
           this.presentedStartDate = this.startDate;
           this.presentedEndDate = this.endDate;
-          
-          this.parentEmitterUpdateData.emit(this.chartData.chartDataA.sensorData); 
-          this.emitChangeSensor();
 
+          this.parentEmitterUpdateData.emit(this.chartData.chartDataA);
+
+
+
+          if(this.presentedTyp == "DHT") {
+            sensorNumber = 0;
+            this.chartData.chartDataB.sensorData.forEach(
+              sensor => {
+                this.formBuilder.group(this.sensorsGroup_chart2);
+                this.sensorsGroup_chart2.addControl(sensorNumber.toString(), this.formBuilder.control(''))
+                this.sensorsGroup_chart2.controls[sensorNumber].setValue(true);
+                sensorNumber++;
+            }
+            )
+            this.sensorsGroup_chart2.updateValueAndValidity();
+            this.parentEmitterUpdateData_chart2.emit(this.chartData.chartDataB);
+          }
+          this.emitChangeSensor();
       },
       errorMessage => {
         console.log(errorMessage);
@@ -166,7 +192,17 @@ export class MeasurementsComponent implements OnInit {
     for (let i = 0; i < this.chartData.chartDataA.sensorData.length; i++) {
       sensorTab.push(this.sensorsGroup.controls[i].value == true)
     }
-    this.parentEmitter.emit(sensorTab); 
+    this.parentEmitter.emit(sensorTab);
+
+    if(this.presentedTyp == "DHT") {
+        var sensorTab_2: any = [];
+        if(this.chartData == null) return;
+        for (let i = 0; i < this.chartData.chartDataB.sensorData.length; i++) {
+          sensorTab_2.push(this.sensorsGroup_chart2.controls[i].value == true)
+        }
+        this.parentEmitter_chart2.emit(sensorTab_2);
+    }
+
   }
 
 }

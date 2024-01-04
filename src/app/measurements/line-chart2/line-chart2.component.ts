@@ -25,11 +25,11 @@ export type ChartOptions = {
 
 
 @Component({
-  selector: 'app-line-chart',
-  templateUrl: './line-chart.component.html',
-  styleUrls: ['./line-chart.component.scss']
+  selector: 'app-line-chart2',
+  templateUrl: './line-chart2.component.html',
+  styleUrls: ['./line-chart2.component.scss']
 })
-export class LineChartComponent implements OnInit, OnDestroy {
+export class LineChart2Component implements OnInit, OnDestroy {
 
   @Input() dataList: {
     sensorData: [{
@@ -41,27 +41,27 @@ export class LineChartComponent implements OnInit, OnDestroy {
     }];
     measurementType: string;
   }
-
-  @ViewChild("char", {static: false}) chart: ChartComponent  | any;
+  
+  @ViewChild("char2", {static: false}) chart: ChartComponent  | any;
   public chartOptions: any;
 
 
   constructor() {}
 
 
-  @Input() eventEmitter: EventEmitter<[]>;
-  private subscription: Subscription;
+  @Input() eventEmitter: EventEmitter<[]>; 
+  private subscription: Subscription; 
 
-  @Input() eventEmitterUpdateData: EventEmitter<[]>;
-  private subscriptionUpdateData: Subscription;
+  @Input() eventEmitterUpdateData: EventEmitter<[]>; 
+  private subscriptionUpdateData: Subscription; 
 
   @ViewChild(BaseChartDirective) charttt: BaseChartDirective;
 
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    this.subscriptionUpdateData.unsubscribe();
-  }
+  ngOnDestroy(): void { 
+    this.subscription.unsubscribe(); 
+    this.subscriptionUpdateData.unsubscribe(); 
+  } 
 
   ngOnInit() {
 
@@ -82,6 +82,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
       })
 
     })
+    // console.log(this.charName + "xxx");
     this.chartOptions = this.charDefaultObject(object, this.dataList.measurementType)
     this.chartOptions.render();
   }
@@ -97,9 +98,10 @@ export class LineChartComponent implements OnInit, OnDestroy {
       return dataTab;
     }
 
-    subscribeToParentEmitter(): void {
-      this.subscription = this.eventEmitter.subscribe((data: []) => {
-
+    subscribeToParentEmitter(): void { 
+      // console.log("cos przyszlo");
+      this.subscription = this.eventEmitter.subscribe((data: []) => { 
+          
           var object: any = [];
           var counter = 0;
           this.dataList.sensorData.forEach(el => {
@@ -115,18 +117,18 @@ export class LineChartComponent implements OnInit, OnDestroy {
                 })
             }
             counter++;
-
+      
           })
           this.chartOptions = this.charDefaultObject(object, this.dataList.measurementType)
           this.chartOptions.render();
+          
+      }); 
 
-      });
-
-    }
+    }  
 
 
-    subscribeToParentEmitterUpdateData(): void {
-      this.subscriptionUpdateData = this.eventEmitterUpdateData.subscribe((data: any) => {
+    subscribeToParentEmitterUpdateData(): void { 
+      this.subscriptionUpdateData = this.eventEmitterUpdateData.subscribe((data: any) => { 
         this.dataList.sensorData = data.sensorData;
         this.dataList.measurementType = data.measurementType;
       })
@@ -152,13 +154,13 @@ export class LineChartComponent implements OnInit, OnDestroy {
           else yText = "Wilgotność powietrza [%]";
 
 
-          return new CanvasJS.Chart("char", {
+          return new CanvasJS.Chart("char2", {
             animationEnabled: true,
             zoomEnabled: true,
           //zoomType: "xy",
             exportEnabled: true,
             interactivityEnabled: true,
-
+      
             theme: "light2",
             title:{
             text: xText
@@ -179,7 +181,7 @@ export class LineChartComponent implements OnInit, OnDestroy {
                 e.dataSeries.visible = false;
               } else {
                 e.dataSeries.visible = true;
-              }
+              } 
               e.chart.update();
             }
             },

@@ -21,9 +21,7 @@ export class StationPageViewComponent implements OnInit {
 
     this.stationService.getStationsList().subscribe(
         resData => {
-          console.log(resData);
           this.stationList = resData.stationListElement;
-          console.log(this.stationList);
         },
         errorMessage => {
           this.error = true;
@@ -32,7 +30,7 @@ export class StationPageViewComponent implements OnInit {
     );
 
   }
-  
+
   // this.router.navigate(['login']);
   toEditPage(id?: number) {
     this.router.navigate(['settings', id, 'edit']);

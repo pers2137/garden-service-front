@@ -12,7 +12,7 @@ import { WarningsServiceService } from 'src/app/services/warnings-service.servic
 })
 export class WarningsOccurresesListComponent implements OnInit{
 
-  warningList: { 
+  warningList: {
     timestamp: number;
     sensorAddressList: string[];
   }[] = [];
@@ -35,7 +35,6 @@ export class WarningsOccurresesListComponent implements OnInit{
     } else if (this.route.snapshot.data[0] === "UNEXPECTED_ERROR") {
       this.error = true;
     } else {
-      // console.log(this.route.snapshot.data[0])
        this.stationName = this.route.snapshot.data[0].normName;
     }
 

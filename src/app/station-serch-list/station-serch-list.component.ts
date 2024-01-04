@@ -21,7 +21,7 @@ export class StationSerchListComponent implements OnInit {
       // { label: 'medium', selected: this.size === 'medium', togglable: true },
       // { label: 'small', selected: this.size === 'small', togglable: true }
     ];
-    
+
     stationList: Station[] = [];
     public listType = "INFO";
 
@@ -37,13 +37,10 @@ export class StationSerchListComponent implements OnInit {
         this.listType = "WARNINGS"
       }
 
-      console.log(this.router.url);
-      
+
       this.stationService.getStationsList().subscribe(
         resData => {
-          console.log(resData);
           this.stationList = resData.stationListElement;
-          console.log(this.stationList);
           this.error = false;
         },
         errorMessage => {
@@ -86,7 +83,7 @@ export class StationSerchListComponent implements OnInit {
       } else {
         this.router.navigate(['warnings',stationId]);
       }
-    
+
     }
 
 }
