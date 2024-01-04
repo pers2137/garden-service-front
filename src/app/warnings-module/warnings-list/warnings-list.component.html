@@ -26,12 +26,8 @@
 
 
     <mat-card-header *ngIf="!notFound && !error"  class="title_center" style="margin-bottom: 15px;">
-        <button style="background-color: rgb(26, 188, 26);" 
-                mat-raised-button 
-                color="primary" 
-                class="example-icon"
-                (click)="navigateToNew()" > 
-            <mat-icon>save</mat-icon>
+        <button mat-raised-button color="primary" class="example-icon" (click)="navigateToNew()"> 
+            <mat-icon>add_box</mat-icon>
             &nbsp;Dodaj nową regułę
         </button>
     </mat-card-header>

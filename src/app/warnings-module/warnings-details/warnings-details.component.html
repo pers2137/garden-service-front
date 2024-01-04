@@ -81,7 +81,7 @@
                         class="example-icon mr-3"
                         (click)="deleteSensor(sensor)"
                         >
-                  <mat-icon>info</mat-icon>&nbsp;Usuń
+                  <mat-icon>clear</mat-icon>&nbsp;Usuń
                 </button>
               </div>
             </div>
@@ -118,7 +118,7 @@
             class="example-icon ml-3"
             style="margin-bottom: 15px;"
             (click)="addNewSensorToWarnings()">
-                 <mat-icon>info</mat-icon>&nbsp;Dodaj
+                 <mat-icon>add</mat-icon>&nbsp;Dodaj
             </button>
         </div>
         
@@ -134,12 +134,12 @@
 
 <div class="title_center">
     <mat-card-actions>
-        <button (click)="saveWarning()" mat-raised-button color="primary" class="example-icon mr-3">
+        <button (click)="saveWarning()" mat-raised-button color="primary" class="example-icon mr-3" style="background-color: rgb(26, 188, 26);">
             <mat-icon>save</mat-icon>
             &nbsp;Zapisz
         </button>
         <button (click)="back()" mat-raised-button color="primary" class="example-icon mr-3">
-            <mat-icon>clear</mat-icon>
+            <mat-icon>arrow_back</mat-icon>
             &nbsp;Powrót
         </button>
     </mat-card-actions>

@@ -38,6 +38,7 @@ import { EditSettingsComponent } from './settings-module/edit-settings/edit-sett
 import { SettingsModuleComponent } from './settings-module/settings-module.component';
 import { InformationModuleComponent } from './information-module/information-module.component';
 import { StationSerchListComponent } from './station-serch-list/station-serch-list.component';
+import { LoggedGuard } from './guard/logged-guard';
 import { 
 	IgxAvatarModule,
 	IgxFilterModule,
@@ -165,7 +166,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSnackBarModule,
     MatPaginatorModule
   ],
-  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}, UserGuard, MatDatepickerModule],
+  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}, UserGuard, LoggedGuard, MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

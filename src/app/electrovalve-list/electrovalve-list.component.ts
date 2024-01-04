@@ -53,17 +53,12 @@ export class ElectrovalveListComponent implements OnInit {
   panelOpenState = false;  
   isChecked: boolean = false;
 
-  schedulerChange = [
-    false,false,false,false,
-    false,false,false,false,
-    false,false,false,false,
-    false,false,false,false
-  ]
+  schedulerChange = Array(16).fill(false);
 
   valvesStatus: ValvesStatus[] = [
-    {value: 'OFF', viewValue: 'OFF'},
-    {value: 'ON', viewValue: 'ON'},
-    {value: 'AUTO', viewValue: 'AUTO'},
+    {value: 'OFF', viewValue: 'Na stałe wyłączony'},
+    {value: 'ON', viewValue: 'Na stałe włączony'},
+    {value: 'AUTO', viewValue: 'Sterowany wg harmonogramu'},
   ];
 
   dayList = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota', 'Niedziela' ];
