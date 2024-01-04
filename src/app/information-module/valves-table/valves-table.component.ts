@@ -16,11 +16,13 @@ export class ValvesTableComponent implements OnInit{
 
   ngOnInit() {
     var counter = 1;
+
     var object = {col_1: "", col_1_status: "", 
                   col_2: "", col_2_status: "",
                   col_3: "", col_3_status: "",
                   col_4: "", col_4_status: ""
                 };
+    
     this.valvesList.forEach(it => {
           if(counter == 1) {
             object.col_1 = it.pin

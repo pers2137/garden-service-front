@@ -41,14 +41,10 @@
         <mat-option *ngFor="let num of minuteNumber" [value]="num">{{num}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <button  align="end" 
-          style="float:right;background-color: rgb(26, 188, 26);margin-bottom: 12px;margin-right: 23px;"
-          mat-raised-button color="warn" 
-          class="example-icon"
-          (click)="saveNew()"
-          
-          >
-      <mat-icon>info</mat-icon>
+    <button align="end" style="float: right; margin-bottom: 12px; margin-right: 23px;"
+          mat-raised-button color="primary" 
+          class="example-icon" (click)="saveNew()">
+      <mat-icon>add_box</mat-icon>
       &nbsp;Dodaj
-  </button>
+    </button>
   </div>
