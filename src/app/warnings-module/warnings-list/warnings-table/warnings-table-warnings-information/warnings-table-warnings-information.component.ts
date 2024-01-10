@@ -2,12 +2,6 @@ import { Component, Input } from '@angular/core';
 
 
 
-export interface WarningDetail { 
-  warningInformationList: [{
-    timestamp: number;
-    sensorAddressList: string[];
-  }]
-};
 
 
 @Component({
@@ -19,10 +13,7 @@ export class WarningsTableWarningsInformationComponent {
 
 
   @Input() warningList:  { 
-    
       timestamp: number;
       sensorAddressList: string[];
     }[]
-  
-
 }

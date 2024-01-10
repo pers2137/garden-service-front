@@ -66,31 +66,31 @@ export class StationService {
 
   getStationsList() {
     return this.http.get<StationListResponse>(
-      'http://' + environment.host + ':' + environment.port + '/api/station/get/list'
+      'http://' + environment.host + ':' + environment.port + '/api/station/list'
     );
   }
 
   getStationInformation(id: number) {
     return this.http.get<StationInformationResponse>(
-      'http://' + environment.host + ':' + environment.port + '/api/station/details/information/' + id
+      'http://' + environment.host + ':' + environment.port + '/api/station/' + id + '/details/information'
     );
   }
 
   getStationBasicInformation(id: number) {
     return this.http.get<StationInformationResponse>(
-      'http://' + environment.host + ':' + environment.port + '/api/station/basic/information/' + id
+      'http://' + environment.host + ':' + environment.port + '/api/station/' + id + '/basic/information'
     );
   }
 
   getStationSettings(id: number) {
     return this.http.get<StationSettingsResponse>(
-      'http://' + environment.host + ':' + environment.port + '/api/station/settings/get/' + id
+      'http://' + environment.host + ':' + environment.port + '/api/station/'+ id +'/settings'
     );
   }
 
   getSensorList(id: number) {
     return this.http.get<StationSettingsResponse>(
-      'http://' + environment.host + ':' + environment.port + '/api/station/sensor/list/' + id
+      'http://' + environment.host + ':' + environment.port + '/api/station/' + id + '/sensor/list'
     );
   }
 
@@ -137,7 +137,7 @@ export class StationService {
       valvesList: valvesRequestObject
     }
     return this.http.post<StationSettingsResponse>(
-      'http://' + environment.host + ':' + environment.port + '/api/station/settings/' + settings.id +"/save",
+      'http://' + environment.host + ':' + environment.port + '/api/station/' + settings.id + '/settings/save',
       requestObject
     );
   }

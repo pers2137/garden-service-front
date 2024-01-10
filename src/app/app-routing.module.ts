@@ -43,7 +43,7 @@ const routes: Routes = [
     component: InformationModuleComponent,
     canActivate: [UserGuard],
     children: [
-      { path: '', component: StationSerchListComponent }, //TODO -> kopia bebechów SelectSettingsComponent
+      { path: '', component: StationSerchListComponent },
       {
         path: ':id',
         component: InformationStationComponent,
@@ -56,7 +56,7 @@ const routes: Routes = [
     component: SettingsModuleComponent,
     canActivate: [UserGuard],
     children: [
-      { path: '', component: StationSerchListComponent }, //TODO -> PODMIANA NA StationDropDownList ????????
+      { path: '', component: StationSerchListComponent },
       {
         path: ':id/edit',
         component: EditSettingsComponent,
@@ -70,7 +70,7 @@ const routes: Routes = [
     component: WarningsModuleComponent,
     canActivate: [UserGuard],
     children: [
-      { path: '', component: StationSerchListComponent }, //TODO -> PODMIANA NA StationDropDownList ????????
+      { path: '', component: StationSerchListComponent },
       {
         path: ':id',
         component: WarningsListComponent,

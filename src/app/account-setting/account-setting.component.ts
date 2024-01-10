@@ -61,7 +61,6 @@ export class AccountSettingComponent {
       this.errors.push("Nowe hasło musi być inne niż stare!");
       return;
     }
-    console.log("ok :)");
     this.accountService.changePassword(this.password.oldPassword, this.password.newPassword).subscribe(
       () => {
         this.success.push("Hasło zostało zmienione!");

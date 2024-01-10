@@ -37,7 +37,6 @@ export class LoginComponent {
   login() {
     this.userService.login(this.userDto).subscribe(
       restData => {
-        console.log(restData);
         this.router.navigate(['/station-view']);
       },
       error => {

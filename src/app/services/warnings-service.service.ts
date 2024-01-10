@@ -69,7 +69,7 @@ export class WarningsServiceService {
 
   deleteWarning(id: number) {
     return this.http.delete(
-      'http://' + environment.host + ':' + environment.port + '/api/warnings/delete/' + id
+      'http://' + environment.host + ':' + environment.port + '/api/warnings/' + id
     );
   }
 

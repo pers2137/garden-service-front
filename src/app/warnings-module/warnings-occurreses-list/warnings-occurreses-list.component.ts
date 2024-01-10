@@ -10,7 +10,7 @@ import { WarningsServiceService } from 'src/app/services/warnings-service.servic
   templateUrl: './warnings-occurreses-list.component.html',
   styleUrls: ['./warnings-occurreses-list.component.scss']
 })
-export class WarningsOccurresesListComponent implements OnInit{
+export class WarningsOccurresesListComponent implements OnInit {
 
   warningList: {
     timestamp: number;

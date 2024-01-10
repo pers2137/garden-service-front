@@ -8,7 +8,9 @@
         </mat-panel-title>
         <mat-panel-description>
           <!-- {{valve.operationMode != 'AUTO' ? '&nbsp;&nbsp;&nbsp;&nbsp;' : '' }} -->
-          <div style="width: 150px;">Tryb sterowania: {{valve.operationMode}}&nbsp;&nbsp;</div>
+          <div style="width: 275px;" *ngIf="valve.operationMode == 'OFF'">Tryb sterowania: {{valvesStatus[0].viewValue}}&nbsp;&nbsp;</div>
+          <div style="width: 275px;" *ngIf="valve.operationMode == 'ON'">Tryb sterowania: {{valvesStatus[1].viewValue}}&nbsp;&nbsp;</div>
+          <div style="width: 275px;" *ngIf="valve.operationMode == 'AUTO'">Tryb sterowania: {{valvesStatus[2].viewValue}}&nbsp;&nbsp;</div>
           <app-status-dot [dotType]="valve.operationMode"></app-status-dot>
           <div *ngIf="schedulerChange[i]" style="margin-left: 8%;color: rgb(240, 57, 40);">Nie zapisano zmian*</div>
           </mat-panel-description>

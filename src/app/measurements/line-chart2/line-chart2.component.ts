@@ -82,7 +82,6 @@ export class LineChart2Component implements OnInit, OnDestroy {
       })
 
     })
-    // console.log(this.charName + "xxx");
     this.chartOptions = this.charDefaultObject(object, this.dataList.measurementType)
     this.chartOptions.render();
   }
@@ -99,7 +98,6 @@ export class LineChart2Component implements OnInit, OnDestroy {
     }
 
     subscribeToParentEmitter(): void { 
-      // console.log("cos przyszlo");
       this.subscription = this.eventEmitter.subscribe((data: []) => { 
           
           var object: any = [];
