@@ -28,7 +28,6 @@ import { LoginComponent } from './login/login.component';
 import { AlertComponent } from './alert/alert.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserGuard } from './guard/application-guard';
-import { TestComponent } from './test/test.component';
 import { MenuComponent } from './menu/menu.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -93,7 +92,6 @@ import { LineChart2Component } from './measurements/line-chart2/line-chart2.comp
     BannerComponent,
     LoginComponent,
     AlertComponent,
-    TestComponent,
     MenuComponent,
     StationPageViewComponent,
     ShowSettingsComponent,

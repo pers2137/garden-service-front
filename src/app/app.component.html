@@ -6,13 +6,13 @@
     </div>
   </mat-sidenav>
   
-  <mat-sidenav-content>
+  <mat-sidenav-content >
     <app-banner *ngIf="!isUserLogged()"></app-banner>
     <app-header *ngIf="isUserLogged()"
                     (onMenuButtonClick) = "toggolMenuClick()"
                     (onAddTodoClick) = "createNewTodo()">
     </app-header>
-      <router-outlet></router-outlet>
+      <router-outlet ></router-outlet>
     <!-- <app-footer *ngIf="isUserLogged()"></app-footer> -->
   </mat-sidenav-content>
 

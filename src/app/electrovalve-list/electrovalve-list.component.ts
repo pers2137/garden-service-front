@@ -1,7 +1,7 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { empty } from 'rxjs';
+import { Subscription, empty } from 'rxjs';
 import { ShedulerAddModel } from '../models/shedulerAddModel.model';
 
 interface ValvesStatus {
@@ -22,15 +22,20 @@ export interface SzchedulerDeleteRecord {
   templateUrl: './electrovalve-list.component.html',
   styleUrls: ['./electrovalve-list.component.scss']
 })
-export class ElectrovalveListComponent implements OnInit {
+export class ElectrovalveListComponent implements OnInit, OnDestroy {
 
-  constructor(){
-    
-  }
+  constructor(){}
 
   ngOnInit() {
-    console.log(this.valvesList);
+    this.subscribeToParentEmitter();
   }
+
+  ngOnDestroy(): void { 
+    this.subscription.unsubscribe(); 
+  } 
+
+  @Input() eventEmitter: EventEmitter<any>; 
+  private subscription: Subscription; 
 
   @Output() addSchedulerEvent = new EventEmitter<ShedulerAddModel>();
   @Output() deleteSchedulerEvent = new EventEmitter<SzchedulerDeleteRecord>();
@@ -79,5 +84,11 @@ export class ElectrovalveListComponent implements OnInit {
 
   markAsChanged(pin: number) {
     this.schedulerChange[pin] = true;
+  }
+
+  subscribeToParentEmitter(): void { 
+    this.subscription = this.eventEmitter.subscribe((data: any) => {
+      this.schedulerChange = Array(16).fill(false);
+     })
   }
 }

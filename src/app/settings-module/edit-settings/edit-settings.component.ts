@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SzchedulerDeleteRecord } from 'src/app/electrovalve-list/electrovalve-list.component';
 import { ShedulerAddModel } from 'src/app/models/shedulerAddModel.model';
-import { Station } from 'src/app/models/station.model';
 import { StationSettings } from 'src/app/models/stationSettings.model';
 import { StationService } from 'src/app/services/station-service.service';
 import {MatSnackBar, MatSnackBarRef, MatSnackBarModule} from '@angular/material/snack-bar';
@@ -28,7 +27,7 @@ export class EditSettingsComponent implements OnInit {
   value = 30;
 
 
-
+  parentEmitter = new EventEmitter<[]>();
 
   station!: StationSettings;
   notFound: boolean = false;
@@ -58,8 +57,7 @@ export class EditSettingsComponent implements OnInit {
           this._snackBar.openFromComponent(SaveSnackBarComponent, {
             duration: 2500,
           });
-          // this.stationList = resData.stationListElement;
-          // console.log(this.stationList);
+          this.parentEmitter.emit();
         },
         errorMessage => {
           console.log(errorMessage);

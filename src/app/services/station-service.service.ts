@@ -100,9 +100,8 @@ export class StationService {
       startDate: startDate.toISOString(),
       endDate: endDate.toISOString()
     }
-    
     return this.http.post<StationMeasurementsDataResponse>(
-      'http://' + environment.host + ':' + environment.port + '/api/measurements/data/' + id, 
+      'http://' + environment.host + ':' + environment.port + '/api/measurements/data/' + id,
       requestObject
     );
   }

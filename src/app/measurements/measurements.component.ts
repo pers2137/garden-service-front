@@ -131,8 +131,8 @@ export class MeasurementsComponent implements OnInit {
       this.presentedEndDate != this.endDate) {
       this.getMeasurementsData();
     } else {
-
-      this.emitChangeSensor();
+      this.getMeasurementsDataWithoutChangeSensorGroup();
+      // this.emitChangeSensor();
     }
   }
 
@@ -142,8 +142,6 @@ export class MeasurementsComponent implements OnInit {
     this.stationService.getMeasurements(this.selectedStationId, this.typ,  this.startDate, this.endDate).subscribe(
       resData => {
           this.chartData = resData;
-          console.log(this.chartData);
-
           var sensorNumber = 0;
           if(this.chartData == null) return;
           this.chartData.chartDataA.sensorData.forEach(
@@ -177,6 +175,25 @@ export class MeasurementsComponent implements OnInit {
             }
             )
             this.sensorsGroup_chart2.updateValueAndValidity();
+            this.parentEmitterUpdateData_chart2.emit(this.chartData.chartDataB);
+          }
+          this.emitChangeSensor();
+      },
+      errorMessage => {
+        console.log(errorMessage);
+      });
+  }
+
+  private getMeasurementsDataWithoutChangeSensorGroup() {
+
+    this.stationService.getMeasurements(this.selectedStationId, this.typ,  this.startDate, this.endDate).subscribe(
+      resData => {
+          this.chartData = resData;
+          if(this.chartData == null) return;
+          
+          this.parentEmitterUpdateData.emit(this.chartData.chartDataA);
+
+          if(this.presentedTyp == "DHT") {
             this.parentEmitterUpdateData_chart2.emit(this.chartData.chartDataB);
           }
           this.emitChangeSensor();
